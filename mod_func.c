@@ -20,8 +20,8 @@ static int conta_quantidade_de_params_amarrados(ParamDescription params[], int n
  *
  *
  */
-void cria_func (void* f, ParamDescription params[], int n, unsigned char codigo[]) {
-    if (n < 1 || n > 3) {
+void cria_func (void* f, ParamDescription params[], int paramsCount, unsigned char codigo[]) {
+    if (paramsCount < 1 || paramsCount > 3) {
         printf("O número mínimo de parâmetros é 1, e o máximo é 3!\n");
         return;
     }
@@ -45,7 +45,7 @@ void cria_func (void* f, ParamDescription params[], int n, unsigned char codigo[
     }
 
     int offset = 0;
-    int params_amarrados = conta_quantidade_de_params_amarrados(params, n);
+    int params_amarrados = conta_quantidade_de_params_amarrados(params, paramsCount);
     
     /**
      * Quando a função original tiver exatamente 2 parâmetros e amarra apenas um, em particular,
@@ -53,7 +53,7 @@ void cria_func (void* f, ParamDescription params[], int n, unsigned char codigo[
      * Mapeia-se o valor do primeiro argumento (rdi) da função gerada 
      * para o segundo argumento (rsi) da função original
      */
-    if (n == 2 && params_amarrados == 1 && (params[0].orig_val == FIX || params[0].orig_val == IND)) {
+    if (paramsCount == 2 && params_amarrados == 1 && (params[0].orig_val == FIX || params[0].orig_val == IND)) {
         char caso_especial_de_localizacao_de_registrador[3] = {
             // movq %rdi, %rsi
             0x48, 0x89, 0xfe  
@@ -68,7 +68,7 @@ void cria_func (void* f, ParamDescription params[], int n, unsigned char codigo[
     /**
      * Quando a função original tem exatamente 3 parâmetros, há mais 4 casos especiais.
      */
-    else if (n == 3) {
+    else if (paramsCount == 3) {
         if (params_amarrados == 1) {
             if (params[0].orig_val == FIX || params[0].orig_val == IND) {
                 /**
@@ -138,7 +138,7 @@ void cria_func (void* f, ParamDescription params[], int n, unsigned char codigo[
     };
 
     
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < paramsCount; i++) {
         ParamDescription param = params[i];
         ValueType tp = param.tipo_val;
         ValueOrigin ov = param.orig_val;

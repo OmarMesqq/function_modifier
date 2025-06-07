@@ -13,14 +13,14 @@ static void constroi_instrucao_mov_32_bits(char* buf, int order, int valor);
 static void constroi_instrucao_mov_64_bits(char* buf, int order, void* valor);
 static void constroi_instrucao_desref_ptr_para_int(char* buf, int order);
 static void constroi_instrucao_desref_ptr_para_ptr(char* buf, int order);
-static int conta_quantidade_de_params_amarrados(DescParam params[], int n);
+static int conta_quantidade_de_params_amarrados(ParamDescription params[], int n);
 
 
 /**
  *
  *
  */
-void cria_func (void* f, DescParam params[], int n, unsigned char codigo[]) {
+void cria_func (void* f, ParamDescription params[], int n, unsigned char codigo[]) {
     if (n < 1 || n > 3) {
         printf("O número mínimo de parâmetros é 1, e o máximo é 3!\n");
         return;
@@ -139,9 +139,9 @@ void cria_func (void* f, DescParam params[], int n, unsigned char codigo[]) {
 
     
     for (int i = 0; i < n; i++) {
-        DescParam param = params[i];
-        TipoValor tp = param.tipo_val;
-        OrigemValor ov = param.orig_val;
+        ParamDescription param = params[i];
+        ValueType tp = param.tipo_val;
+        ValueOrigin ov = param.orig_val;
 
         if (ov == PARAM) {
             continue;
@@ -307,11 +307,11 @@ static void constroi_instrucao_desref_ptr_para_int(char* buf, int order) {
     buf[1] = desref_opcodes_32_bits[order][1];
 }
 
-static int conta_quantidade_de_params_amarrados(DescParam params[], int n) {
+static int conta_quantidade_de_params_amarrados(ParamDescription params[], int n) {
     int params_amarrados = 0;
     for (int i = 0; i < n; i++) {
-        DescParam param = params[i];
-        OrigemValor ov = param.orig_val;
+        ParamDescription param = params[i];
+        ValueOrigin ov = param.orig_val;
         if (ov == FIX || ov == IND) {
             params_amarrados++;
         }

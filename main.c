@@ -31,7 +31,7 @@ int main() {
 void roda_testes_1() {
   typedef int (*func_ptr) (int x);
 
-  DescParam params[2];
+  ParamDescription params[2];
   func_ptr f_mult;
   int i;
   unsigned char codigo[500];
@@ -57,7 +57,7 @@ void roda_testes_1() {
 void roda_testes_2() {
   typedef int (*func_ptr) ();
 
-  DescParam params[2];
+  ParamDescription params[2];
   func_ptr f_mult;
   int i;
   unsigned char codigo[500];
@@ -84,7 +84,7 @@ void roda_testes_3() {
   typedef int (*func_ptr) (void* candidata, size_t n);
 
   char fixa[] = "quero saber se a outra string é um prefixo dessa";
-  DescParam params[3];
+  ParamDescription params[3];
   func_ptr mesmo_prefixo;
   char s[] = "quero saber tudo";
   int tam;

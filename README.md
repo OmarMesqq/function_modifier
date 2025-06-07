@@ -16,26 +16,26 @@ gcc -g -Wall -Wextra -no-pie -Wa,--execstack main.c mod_func.c -o func_modifier
 
 O protótipo da função é:
 ```c
-void cria_func (void* f, DescParam params[], int n, unsigned char codigo[]);
+void cria_func (void* f, ParamDescription params[], int n, unsigned char codigo[]);
 ```
 onde `f` tem o endereço da função original a ser chamada pelo código gerado, o array `params`
 contém a descrição dos parâmetros para chamar essa função, `n` é o número de parâmetros descritos por params (1 <= n <= 3) 
 e `codigo` é um vetor onde deverá ser gravado o código gerado.
 
-O tipo `DescParam` é definido da seguinte forma:
+O tipo `ParamDescription` é definido da seguinte forma:
 
 ```c
-typedef enum {INT_PAR, PTR_PAR} TipoValor;
-typedef enum {PARAM, FIX, IND} OrigemValor;
+typedef enum {INT_PAR, PTR_PAR} ValueType;
+typedef enum {PARAM, FIX, IND} ValueOrigin;
 
 typedef struct {
-  TipoValor    tipo_val;  /* indica o tipo do parametro (inteiro ou ponteiro) */
-  OrigemValor  orig_val;  /* indica a origem do valor do parametro */
+  ValueType    tipo_val;  /* indica o tipo do parametro (inteiro ou ponteiro) */
+  ValueOrigin  orig_val;  /* indica a origem do valor do parametro */
   union {
     int v_int;
     void* v_ptr;
   } valor;         /* define o valor ou endereço do valor do parametro (quando amarrado/indireto) */
-} DescParam;
+} ParamDescription;
 
 ```
 

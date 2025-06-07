@@ -10,7 +10,7 @@ typedef struct {
   union {
     int v_int;
     void* v_ptr;
-  } valor;         /* define o valor ou endereço do valor do parametro (quando amarrado/indireto) */
+  } value;         /* define o valor ou endereço do valor do parametro (quando amarrado/indireto) */
 } ParamDescription;
 
 void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char codigo[]);

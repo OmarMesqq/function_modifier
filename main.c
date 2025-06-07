@@ -41,7 +41,7 @@ void roda_testes_1() {
 
   params[1].tipo_val = INT_PAR; /* o segundo parâmetro de mult é int */
   params[1].orig_val = FIX;     /* a nova função passa para mult a constante 10 */
-  params[1].valor.v_int = 10;
+  params[1].value.v_int = 10;
 
   mod_func (mult, params, 2, codigo);
   // faz type cast para "converter" vetor com instruções em um tipo "chamável" (função)
@@ -64,11 +64,11 @@ void roda_testes_2() {
 
   params[0].tipo_val = INT_PAR; /* a nova função passa para mult um valor inteiro */
   params[0].orig_val = IND;     /* que é o valor corrente da variavel i */
-  params[0].valor.v_ptr = &i;
+  params[0].value.v_ptr = &i;
 
   params[1].tipo_val = INT_PAR; /* o segundo argumento passado para mult é a constante 10 */
   params[1].orig_val = FIX;
-  params[1].valor.v_int = 10;
+  params[1].value.v_int = 10;
 
   mod_func (mult, params, 2, codigo);
   f_mult = (func_ptr) codigo;
@@ -92,7 +92,7 @@ void roda_testes_3() {
 
   params[0].tipo_val = PTR_PAR; /* o primeiro parâmetro de memcmp é um ponteiro para char */
   params[0].orig_val = FIX;     /* a nova função passa para memcmp o endereço da string "fixa" */
-  params[0].valor.v_ptr = fixa;
+  params[0].value.v_ptr = fixa;
 
   params[1].tipo_val = PTR_PAR; /* o segundo parâmetro de memcmp é também um ponteiro para char */
   params[1].orig_val = PARAM;   /* a nova função recebe esse ponteiro e repassa para memcmp */

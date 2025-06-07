@@ -147,7 +147,7 @@ void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char
             continue;
         } else if (ov == FIX) {
             if (tp == INT_PAR) {
-                int valor_a_guardar = param.valor.v_int;
+                int valor_a_guardar = param.value.v_int;
                 char instruction[5];
 
                 constroi_instrucao_mov_32_bits(instruction, i, valor_a_guardar);
@@ -156,7 +156,7 @@ void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char
                 }
                 offset += sizeof(instruction);
             } else if (tp == PTR_PAR) {
-                void* ptr_a_guardar = param.valor.v_ptr;
+                void* ptr_a_guardar = param.value.v_ptr;
                 char instruction[10];
 
                 constroi_instrucao_mov_64_bits(instruction, i, ptr_a_guardar);
@@ -170,7 +170,7 @@ void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char
             }
         } else if (ov == IND) {
             if (tp == INT_PAR) {
-                int* ptr_para_valor_a_guardar = (int*) param.valor.v_ptr;
+                int* ptr_para_valor_a_guardar = (int*) param.value.v_ptr;
                 char mov_instruction[10];
                 char desref_instruction[2];
 
@@ -191,7 +191,7 @@ void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char
                 }
                 offset += sizeof(desref_instruction);
             } else if (tp == PTR_PAR) {
-                void* ptr_a_guardar = param.valor.v_ptr;
+                void* ptr_a_guardar = param.value.v_ptr;
                 char instruction[10];
                 char desref_instruction[3];
 

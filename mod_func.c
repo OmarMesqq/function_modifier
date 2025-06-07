@@ -20,7 +20,7 @@ static int conta_quantidade_de_params_amarrados(ParamDescription params[], int n
  *
  *
  */
-void cria_func (void* f, ParamDescription params[], int paramsCount, unsigned char codigo[]) {
+void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char codigo[]) {
     if (paramsCount < 1 || paramsCount > 3) {
         printf("O número mínimo de parâmetros é 1, e o máximo é 3!\n");
         return;

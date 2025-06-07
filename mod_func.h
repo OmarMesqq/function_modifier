@@ -13,7 +13,7 @@ typedef struct {
   } valor;         /* define o valor ou endereço do valor do parametro (quando amarrado/indireto) */
 } ParamDescription;
 
-void cria_func (void* f, ParamDescription params[], int paramsCount, unsigned char codigo[]);
+void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char codigo[]);
 
 #endif
 

@@ -43,7 +43,7 @@ void roda_testes_1() {
   params[1].orig_val = FIX;     /* a nova função passa para mult a constante 10 */
   params[1].valor.v_int = 10;
 
-  cria_func (mult, params, 2, codigo);
+  mod_func (mult, params, 2, codigo);
   // faz type cast para "converter" vetor com instruções em um tipo "chamável" (função)
   f_mult = (func_ptr) codigo;   
 
@@ -70,7 +70,7 @@ void roda_testes_2() {
   params[1].orig_val = FIX;
   params[1].valor.v_int = 10;
 
-  cria_func (mult, params, 2, codigo);
+  mod_func (mult, params, 2, codigo);
   f_mult = (func_ptr) codigo;
   
   for (i = 1; i <=10; i++) {
@@ -100,7 +100,7 @@ void roda_testes_3() {
   params[2].tipo_val = INT_PAR; /* o terceiro parâmetro de memcmp é um inteiro */
   params[2].orig_val = PARAM;   /* a nova função recebe esse inteiro e repassa para memcmp */
 
-  cria_func (memcmp, params, 3, codigo);
+  mod_func (memcmp, params, 3, codigo);
   mesmo_prefixo = (func_ptr) codigo;
 
   tam = 12;

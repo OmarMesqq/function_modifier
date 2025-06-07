@@ -16,7 +16,7 @@ gcc -g -Wall -Wextra -no-pie -Wa,--execstack main.c mod_func.c -o func_modifier
 
 O protótipo da função é:
 ```c
-void cria_func (void* f, ParamDescription params[], int n, unsigned char codigo[]);
+void mod_func(void* f, ParamDescription params[], int n, unsigned char codigo[]);
 ```
 onde `f` tem o endereço da função original a ser chamada pelo código gerado, o array `params`
 contém a descrição dos parâmetros para chamar essa função, `n` é o número de parâmetros descritos por params (1 <= n <= 3) 

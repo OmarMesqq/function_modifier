@@ -29,8 +29,8 @@ typedef enum {INT_PAR, PTR_PAR} ValueType;
 typedef enum {PARAM, FIX, IND} ValueOrigin;
 
 typedef struct {
-  ValueType    tipo_val;  /* indica o tipo do parametro (inteiro ou ponteiro) */
-  ValueOrigin  orig_val;  /* indica a origem do valor do parametro */
+  ValueType    value_type;  /* indica o tipo do parametro (inteiro ou ponteiro) */
+  ValueOrigin  value_origin;  /* indica a origem do valor do parametro */
   union {
     int v_int;
     void* v_ptr;
@@ -39,7 +39,7 @@ typedef struct {
 
 ```
 
-O campo orig_val indica se o parâmetro deve ser "amarrado" ou não; ele pode conter os seguintes valores:
+O campo value_origin indica se o parâmetro deve ser "amarrado" ou não; ele pode conter os seguintes valores:
 
 - `PARAM`: o parâmetro não é amarrado, ou seja, deve ser recebido pela nova função e repassado à função origin.
 - `FIX`: o parâmetro deve ser amarrado a um valor constante, fornecido no campo valor.

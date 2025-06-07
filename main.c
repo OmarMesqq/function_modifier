@@ -36,11 +36,11 @@ void roda_testes_1() {
   int i;
   unsigned char codigo[500];
 
-  params[0].tipo_val = INT_PAR; /* o primeiro parãmetro de mult é int */
-  params[0].orig_val = PARAM;   /* a nova função repassa seu parämetro */
+  params[0].value_type = INT_PAR; /* o primeiro parãmetro de mult é int */
+  params[0].value_origin = PARAM;   /* a nova função repassa seu parämetro */
 
-  params[1].tipo_val = INT_PAR; /* o segundo parâmetro de mult é int */
-  params[1].orig_val = FIX;     /* a nova função passa para mult a constante 10 */
+  params[1].value_type = INT_PAR; /* o segundo parâmetro de mult é int */
+  params[1].value_origin = FIX;     /* a nova função passa para mult a constante 10 */
   params[1].value.v_int = 10;
 
   mod_func (mult, params, 2, codigo);
@@ -62,12 +62,12 @@ void roda_testes_2() {
   int i;
   unsigned char codigo[500];
 
-  params[0].tipo_val = INT_PAR; /* a nova função passa para mult um valor inteiro */
-  params[0].orig_val = IND;     /* que é o valor corrente da variavel i */
+  params[0].value_type = INT_PAR; /* a nova função passa para mult um valor inteiro */
+  params[0].value_origin = IND;     /* que é o valor corrente da variavel i */
   params[0].value.v_ptr = &i;
 
-  params[1].tipo_val = INT_PAR; /* o segundo argumento passado para mult é a constante 10 */
-  params[1].orig_val = FIX;
+  params[1].value_type = INT_PAR; /* o segundo argumento passado para mult é a constante 10 */
+  params[1].value_origin = FIX;
   params[1].value.v_int = 10;
 
   mod_func (mult, params, 2, codigo);
@@ -90,15 +90,15 @@ void roda_testes_3() {
   int tam;
   unsigned char codigo[500];
 
-  params[0].tipo_val = PTR_PAR; /* o primeiro parâmetro de memcmp é um ponteiro para char */
-  params[0].orig_val = FIX;     /* a nova função passa para memcmp o endereço da string "fixa" */
+  params[0].value_type = PTR_PAR; /* o primeiro parâmetro de memcmp é um ponteiro para char */
+  params[0].value_origin = FIX;     /* a nova função passa para memcmp o endereço da string "fixa" */
   params[0].value.v_ptr = fixa;
 
-  params[1].tipo_val = PTR_PAR; /* o segundo parâmetro de memcmp é também um ponteiro para char */
-  params[1].orig_val = PARAM;   /* a nova função recebe esse ponteiro e repassa para memcmp */
+  params[1].value_type = PTR_PAR; /* o segundo parâmetro de memcmp é também um ponteiro para char */
+  params[1].value_origin = PARAM;   /* a nova função recebe esse ponteiro e repassa para memcmp */
 
-  params[2].tipo_val = INT_PAR; /* o terceiro parâmetro de memcmp é um inteiro */
-  params[2].orig_val = PARAM;   /* a nova função recebe esse inteiro e repassa para memcmp */
+  params[2].value_type = INT_PAR; /* o terceiro parâmetro de memcmp é um inteiro */
+  params[2].value_origin = PARAM;   /* a nova função recebe esse inteiro e repassa para memcmp */
 
   mod_func (memcmp, params, 3, codigo);
   mesmo_prefixo = (func_ptr) codigo;

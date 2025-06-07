@@ -53,7 +53,7 @@ void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char
      * Mapeia-se o valor do primeiro argumento (rdi) da função gerada 
      * para o segundo argumento (rsi) da função original
      */
-    if (paramsCount == 2 && params_amarrados == 1 && (params[0].orig_val == FIX || params[0].orig_val == IND)) {
+    if (paramsCount == 2 && params_amarrados == 1 && (params[0].value_origin == FIX || params[0].value_origin == IND)) {
         char caso_especial_de_localizacao_de_registrador[3] = {
             // movq %rdi, %rsi
             0x48, 0x89, 0xfe  
@@ -70,7 +70,7 @@ void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char
      */
     else if (paramsCount == 3) {
         if (params_amarrados == 1) {
-            if (params[0].orig_val == FIX || params[0].orig_val == IND) {
+            if (params[0].value_origin == FIX || params[0].value_origin == IND) {
                 /**
                  * 1) Um parâmetro é amarrado, em especial, o primeiro. O mapeamento
                  * feito consiste em salvar temporariamente o segundo argumento da função gerada (rsi),
@@ -90,7 +90,7 @@ void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char
                     body[offset + j] = caso_especial_de_localizacao_de_registrador[j];
                 }
                 offset += sizeof(caso_especial_de_localizacao_de_registrador);
-            } else if (params[1].orig_val == FIX || params[1].orig_val == IND) {
+            } else if (params[1].value_origin == FIX || params[1].value_origin == IND) {
                 /**
                  * 2) Um parâmetro é amarrado, em especial, o segundo.
                  * O mapeamento feito é do segundo argumento da gerada para o terceiro da original.
@@ -106,7 +106,7 @@ void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char
                 offset += sizeof(caso_especial_de_localizacao_de_registrador);
             }
         } else if (params_amarrados == 2) {
-            if ((params[0].orig_val == FIX || params[0].orig_val == IND) && (params[1].orig_val == FIX || params[1].orig_val == IND)) {
+            if ((params[0].value_origin == FIX || params[0].value_origin == IND) && (params[1].value_origin == FIX || params[1].value_origin == IND)) {
                 /**
                  * 3) Dois parâmetros são amarrados, em especial, os dois primeiros.
                  * Nesse caso, mapeia-se o primeiro argumento da gerada para o terceiro da original.
@@ -120,7 +120,7 @@ void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char
                     body[offset + j] = caso_especial_de_localizacao_de_registrador[j];
                 }
                 offset += sizeof(caso_especial_de_localizacao_de_registrador);
-            } else if ((params[0].orig_val == FIX || params[0].orig_val == IND) && (params[2].orig_val == FIX || params[2].orig_val == IND)) {
+            } else if ((params[0].value_origin == FIX || params[0].value_origin == IND) && (params[2].value_origin == FIX || params[2].value_origin == IND)) {
                 /**
                  * 4) Dois parâmetros são amarrados, em especial, o primeiro e o último.
                  * Nesse caso, mapeia-se o primeiro argumento da gerada para o segundo da original.
@@ -140,8 +140,8 @@ void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char
     
     for (int i = 0; i < paramsCount; i++) {
         ParamDescription param = params[i];
-        ValueType tp = param.tipo_val;
-        ValueOrigin ov = param.orig_val;
+        ValueType tp = param.value_type;
+        ValueOrigin ov = param.value_origin;
 
         if (ov == PARAM) {
             continue;
@@ -311,7 +311,7 @@ static int conta_quantidade_de_params_amarrados(ParamDescription params[], int n
     int params_amarrados = 0;
     for (int i = 0; i < n; i++) {
         ParamDescription param = params[i];
-        ValueOrigin ov = param.orig_val;
+        ValueOrigin ov = param.value_origin;
         if (ov == FIX || ov == IND) {
             params_amarrados++;
         }

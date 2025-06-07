@@ -5,8 +5,8 @@ typedef enum {INT_PAR, PTR_PAR} ValueType;
 typedef enum {PARAM, FIX, IND} ValueOrigin;
 
 typedef struct {
-  ValueType    tipo_val;  /* indica o tipo do parametro (inteiro ou ponteiro) */
-  ValueOrigin  orig_val;  /* indica a origem do valor do parametro */
+  ValueType    value_type;  /* indica o tipo do parametro (inteiro ou ponteiro) */
+  ValueOrigin  value_origin;  /* indica a origem do valor do parametro */
   union {
     int v_int;
     void* v_ptr;

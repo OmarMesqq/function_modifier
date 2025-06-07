@@ -1,4 +1,4 @@
-# [Gerador dinâmico de funções](https://www.inf.puc-rio.br/~inf1018/2024.2/trabs/t2/trab2-20242.html)
+# [Dynamic function modifier](https://www.inf.puc-rio.br/~inf1018/2024.2/trabs/t2/trab2-20242.html)
 
 implementar uma função em C `gera_func` que recebe o endereço de uma função original e uma descrição de seus parâmetros.
 Tal descrição permite "amarrar" valores específicos aos argumentos da função original, de forma que se pode reduzir a quantidade
@@ -11,7 +11,7 @@ Devido a políticas de segurança de sistemas operacionais modernos, será neces
 adicional no `gcc` que permite que código localizado na pilha seja executável:
 
 ```bash
-gcc -g -Wall -Wextra -no-pie -Wa,--execstack main.c cria_func.c -o func_modifier
+gcc -g -Wall -Wextra -no-pie -Wa,--execstack main.c mod_func.c -o func_modifier
 ```
 
 O protótipo da função é:

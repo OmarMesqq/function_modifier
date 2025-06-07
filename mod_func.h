@@ -1,5 +1,5 @@
-#ifndef CRIA_FUNC_H
-#define CRIA_FUNC_H
+#ifndef MOD_FUNC_H
+#define MOD_FUNC_H
 
 typedef enum {INT_PAR, PTR_PAR} TipoValor;
 typedef enum {PARAM, FIX, IND} OrigemValor;

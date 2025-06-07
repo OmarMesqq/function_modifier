@@ -2,7 +2,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
-#include "cria_func.h"
+#include "mod_func.h"
 
 int mult(int x, int y) {
   return x * y;

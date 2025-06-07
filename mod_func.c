@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define PROLOG_SIZE 19 
+#define PROLOG_SIZE 12
 #define EPILOG_SIZE 6
 #define BODY_SIZE 39
 #define FUNCTION_CALL_SIZE 12   // 2 para movabs, 8 para endereço e 2 para call
@@ -27,9 +27,7 @@ void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char
     }
 
     char prolog[PROLOG_SIZE] = {
-        /* Equivalente a pushq %rbp */
-        0x48, 0x83, 0xec, 0x08, // subq $8, %rsp
-        0x48, 0x89, 0x2c, 0x24, // movq %rbp, (%rsp)
+        0x55, // pushq %rbp
         
         0x48, 0x89, 0xe5, // mov %rsp, %rbp
     

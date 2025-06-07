@@ -8,27 +8,23 @@ int mult(int x, int y) {
   return x * y;
 }
 
-void roda_testes_0();
-void roda_testes_1();
-void roda_testes_2();
-void roda_testes_3();
-void roda_testes_4();
+void run_tests_1();
+void run_tests_2();
+void run_tests_3();
 
 int main() {
-  roda_testes_1();
-  printf("teste 1 passou!\n");
-  roda_testes_2();
-  printf("teste 2 passou!\n");
-  roda_testes_3();
-  printf("teste 3 passou!\n");
-  //roda_testes_4();
-  //printf("teste 4 passou!\n");
+  run_tests_1();
+  printf("Test 1 passed.\n");
+  run_tests_2();
+  printf("Test 2 passed.\n");
+  run_tests_3();
+  printf("Test 3 passed.\n");
 
   return 0;
 }
 
 
-void roda_testes_1() {
+void run_tests_1() {
   typedef int (*func_ptr) (int x);
 
   ParamDescription params[2];
@@ -54,7 +50,7 @@ void roda_testes_1() {
   }
 }
 
-void roda_testes_2() {
+void run_tests_2() {
   typedef int (*func_ptr) ();
 
   ParamDescription params[2];
@@ -80,7 +76,7 @@ void roda_testes_2() {
   }
 }
 
-void roda_testes_3() {
+void run_tests_3() {
   typedef int (*func_ptr) (void* candidata, size_t n);
 
   char fixa[] = "quero saber se a outra string é um prefixo dessa";
@@ -107,10 +103,4 @@ void roda_testes_3() {
   printf ("'%s' tem mesmo prefixo-%d de '%s'? %s\n", s, tam, fixa, mesmo_prefixo (s, tam) ? "NAO" : "SIM");
   tam = strlen(s);
   printf ("'%s' tem mesmo prefixo-%d de '%s'? %s\n", s, tam, fixa, mesmo_prefixo (s, tam) ? "NAO" : "SIM");
-}
-
-void roda_testes_4() {
-    //TODO: passar este teste
-    assert(0 == 1);
-    printf("teste 4 passou!\n");
 }

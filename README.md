@@ -11,7 +11,7 @@ Devido a políticas de segurança de sistemas operacionais modernos, será neces
 adicional no `gcc` que permite que código localizado na pilha seja executável:
 
 ```bash
-gcc -g -Wall -Wextra -no-pie -Wa,--execstack main.c mod_func.c -o func_modifier
+gcc -g -Wall -Wextra -no-pie -Wa,--execstack run_tests.c mod_func.c -o func_modifier
 ```
 
 O protótipo da função é:

@@ -4,7 +4,7 @@ implementar uma função em C `gera_func` que recebe o endereço de uma função
 Tal descrição permite "amarrar" valores específicos aos argumentos da função original, de forma que se pode reduzir a quantidade
 de parâmetros passados e dar maior flexibilidade de uso à função gerada.
 
-Para isso, será necessário gerar, em *runtime* (tempo de execução), o código de máquina correspodente à nova função, copiá-la
+Para isso, será necessário gerar, em runtime, o código de máquina correspodente à nova função, copiá-la
 para uma região da pilha da memória e, enfim, executá-lo.
 
 Devido a políticas de segurança de sistemas operacionais modernos, será necessário compilar o projeto com uma flag
@@ -16,10 +16,10 @@ gcc -g -Wall -Wextra -no-pie -Wa,--execstack run_tests.c mod_func.c -o func_modi
 
 O protótipo da função é:
 ```c
-void mod_func(void* f, ParamDescription params[], int n, unsigned char codigo[]);
+void mod_func(void* f, ParamDescription params[], int paramsCount, unsigned char codigo[]);
 ```
 onde `f` tem o endereço da função original a ser chamada pelo código gerado, o array `params`
-contém a descrição dos parâmetros para chamar essa função, `n` é o número de parâmetros descritos por params (1 <= n <= 3) 
+contém a descrição dos parâmetros para chamar essa função, `paramsCount` é o número de parâmetros descritos por params (1 <= paramsCount <= 3) 
 e `codigo` é um vetor onde deverá ser gravado o código gerado.
 
 O tipo `ParamDescription` é definido da seguinte forma:
